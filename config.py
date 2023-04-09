@@ -1,0 +1,16 @@
+DEBUG = True
+
+DB_USERNAME = "postgres"
+DB_PASSWORD = "123456"
+DB_HOST = "localhost"
+DB_PORT = 5432
+DB_NAME = "money_minder"
+
+SQLALCHEMY_DATABASE_URI = (
+    f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+SECRET_KEY = "_EAnTa5U?q4|XUE}(q'6i1Rgg;+rV9j9bcH.OTqrgoxxNhB$`5-do_h;>k$X42,"
+
+AUTH_TOKEN_VALIDITY = 60 * 30

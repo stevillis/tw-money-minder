@@ -1,0 +1,61 @@
+{
+  "terminal.integrated.scrollback": 10000,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
+  "editor.minimap.maxColumn": 40,
+  "git.autofetch": true,
+  "files.watcherExclude": {
+    "**/__pycache__/**": true,
+    "**documents/**": true,
+    "**/node_modules/**": true,
+    "**/site-packages/**": true
+  },
+  "files.associations": {
+    "**/templates/*.html": "django-html",
+    "**/templates/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+    "*.html": "html"
+  },
+  "emmet.includeLanguages": {
+    "django-html": "batisteo.vscode-django"
+  },
+  "python.defaultInterpreterPath": ".\\venv\\Scripts\\python.exe",
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8CategorySeverity.E": "Information",
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": true,
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": false,
+      "source.fixAll": false
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+      79,
+      120
+    ]
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 79
+  },
+  "[json]": {
+    "editor.defaultFormatter": "batisteo.vscode-django"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "batisteo.vscode-django",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+      79
+    ]
+  },
+  "python.analysis.typeCheckingMode": "basic",
+}
