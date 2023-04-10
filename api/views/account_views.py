@@ -203,8 +203,7 @@ class AccountDetail(Resource):
             balance=balance,
         )
 
-        account_service.update_account(account_db, new_account)
-        updated_account = account_service.get_account_by_pk(pk)
+        updated_account = account_service.update_account(account_db, new_account)
 
         return make_response(acc_schema.jsonify(updated_account), 200)
 

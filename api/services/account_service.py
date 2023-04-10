@@ -37,6 +37,8 @@ def update_account(account_db, new_account):
     account_db.balance = new_account.balance
     db.session.commit()
 
+    return account_db
+
 
 def delete_account(account):
     """Delete account service."""
