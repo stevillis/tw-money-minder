@@ -44,10 +44,10 @@ class AccountList(Resource):
                   type: string
         """
         # accounts = account_service.get_accounts()
-        ts = account_schema.AccountSchema(many=True)
+        acc_schema = account_schema.AccountSchema(many=True)
 
-        # return make_response(ts.jsonify(accounts), 200)
-        return paginate(Account, ts)
+        # return make_response(acc_schema.jsonify(accounts), 200)
+        return paginate(Account, acc_schema)
 
     def post(self):
         """
@@ -91,8 +91,8 @@ class AccountList(Resource):
         # if claims["roles"] != "admin":
         #     return make_response(jsonify("User without authorization to access the resource."), 403)
 
-        ts = account_schema.AccountSchema()
-        validate = ts.validate(request.json)
+        acc_schema = account_schema.AccountSchema()
+        validate = acc_schema.validate(request.json)
         if validate:
             return make_response(jsonify(validate), 400)
 
@@ -106,7 +106,7 @@ class AccountList(Resource):
 
         account_db = account_service.create_account(new_account)
 
-        return make_response(ts.jsonify(account_db), 201)
+        return make_response(acc_schema.jsonify(account_db), 201)
 
 
 class AccountDetail(Resource):
@@ -142,8 +142,8 @@ class AccountDetail(Resource):
         if not account:
             return make_response(jsonify("Account not found!"), 404)
 
-        ts = account_schema.AccountSchema()
-        return make_response(ts.jsonify(account), 200)
+        acc_schema = account_schema.AccountSchema()
+        return make_response(acc_schema.jsonify(account), 200)
 
     def put(self, pk):
         """
@@ -190,8 +190,8 @@ class AccountDetail(Resource):
         if not account_db:
             return make_response(jsonify("Account not found!"), 404)
 
-        ts = account_schema.AccountSchema()
-        validate = ts.validate(request.json)
+        acc_schema = account_schema.AccountSchema()
+        validate = acc_schema.validate(request.json)
         if validate:
             return make_response(jsonify(validate), 400)
 
@@ -206,7 +206,7 @@ class AccountDetail(Resource):
         account_service.update_account(account_db, new_account)
         updated_account = account_service.get_account_by_pk(pk)
 
-        return make_response(ts.jsonify(updated_account), 200)
+        return make_response(acc_schema.jsonify(updated_account), 200)
 
     def delete(self, pk):
         """
