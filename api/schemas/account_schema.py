@@ -7,7 +7,7 @@ from api import ma
 from ..models import account_model
 
 
-class AccountSchema(ma.SQLAlchemySchema):
+class AccountSchema(ma.SQLAlchemyAutoSchema):
     """Account schema class."""
 
     class Meta:
@@ -15,7 +15,7 @@ class AccountSchema(ma.SQLAlchemySchema):
 
         model = account_model.Account
         fields = ("id", "name", "description", "balance", "_links")
-        load_model = True
+        load_instance = True
 
     name = ma_fields.String(required=True)
     description = ma_fields.String(required=True)

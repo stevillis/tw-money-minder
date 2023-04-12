@@ -24,5 +24,5 @@ api = Api(app)
 # API Documentation
 Swagger(app)
 
-from .models import account_model
-from .views import account_views
+from .models import account_model, transaction_model
+from .views import account_views, transaction_views
