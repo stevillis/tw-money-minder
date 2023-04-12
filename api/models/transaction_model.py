@@ -1,14 +1,8 @@
 """Transaction model module."""
-from enum import Enum
+
 
 from api import db
-
-
-class TransactionTypeEnum(Enum):
-    """Transaction Type Enum definition."""
-
-    IN = 1
-    OUT = 2
+from api.types import TransactionTypeEnum
 
 
 class Transaction(db.Model):

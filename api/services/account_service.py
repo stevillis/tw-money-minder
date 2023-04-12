@@ -3,6 +3,8 @@
 from typing import List
 
 from api import db
+from api.models.transaction_model import TransactionTypeEnum
+from api.types import OperationTypeEnum
 
 from ..entities.account_entity import Account as AccountEntity
 from ..models.account_model import Account as AccountModel
@@ -43,4 +45,32 @@ def update_account(account_db, new_account):
 def delete_account(account):
     """Delete account service."""
     db.session.delete(account)
+    db.session.commit()
+
+
+def update_account_balance(
+    account_id, transaction, operation_type, old_balance_value=None
+):
+    """Update account balance based on transaction type."""
+    account = get_account_by_pk(account_id)
+    if operation_type == OperationTypeEnum.INSERT:
+        if transaction.transaction_type == TransactionTypeEnum.IN.name:
+            account.balance += transaction.value
+        else:
+            account.balance -= transaction.value
+    elif operation_type == OperationTypeEnum.UPDATE:
+        if transaction.transaction_type == TransactionTypeEnum.IN.name:
+            account.balance -= old_balance_value
+            account.balance += transaction.value
+        else:
+            account.balance += old_balance_value
+            account.balance -= transaction.value
+    elif operation_type == OperationTypeEnum.DELETE:
+        if transaction.transaction_type == TransactionTypeEnum.IN.name:
+            account.balance -= transaction.value
+        else:
+            account.balance += transaction.value
+    else:
+        return None
+
     db.session.commit()
