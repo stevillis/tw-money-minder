@@ -1,6 +1,7 @@
 """Account views module."""
 
 from flask import jsonify, make_response, request
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
 from api import api
@@ -24,6 +25,7 @@ def get_account_fields(req):
 class AccountList(Resource):
     """Account class based views without parameter."""
 
+    @jwt_required()
     def get(self):
         """
         List all Accounts.
@@ -49,6 +51,7 @@ class AccountList(Resource):
         # return make_response(acc_schema.jsonify(accounts), 200)
         return paginate(Account, acc_schema)
 
+    @jwt_required()
     def post(self):
         """
         Create Account.
@@ -112,6 +115,7 @@ class AccountList(Resource):
 class AccountDetail(Resource):
     """Account class based views with parameter."""
 
+    @jwt_required()
     def get(self, pk):
         """
         Get a Account by its pk.
@@ -145,6 +149,7 @@ class AccountDetail(Resource):
         acc_schema = account_schema.AccountSchema()
         return make_response(acc_schema.jsonify(account), 200)
 
+    @jwt_required()
     def put(self, pk):
         """
         Update Account.
@@ -207,6 +212,7 @@ class AccountDetail(Resource):
 
         return make_response(acc_schema.jsonify(updated_account), 200)
 
+    @jwt_required()
     def delete(self, pk):
         """
         Delete a Account.

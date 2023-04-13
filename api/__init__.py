@@ -25,4 +25,4 @@ api = Api(app)
 Swagger(app)
 
 from .models import account_model, transaction_model, user_model
-from .views import account_views, transaction_views, user_views
+from .views import account_views, authentication_views, transaction_views, user_views

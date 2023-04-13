@@ -1,6 +1,7 @@
 """Transaction views module."""
 
 from flask import jsonify, make_response, request
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 
 from api import api
@@ -26,6 +27,7 @@ def get_transaction_fields(req):
 class TransactionList(Resource):
     """Transaction class based views without parameter."""
 
+    @jwt_required()
     def get(self):
         """
         List all Transactions.
@@ -53,6 +55,7 @@ class TransactionList(Resource):
         # return make_response(acc_schema.jsonify(transactions), 200)
         return paginate(Transaction, acc_schema)
 
+    @jwt_required()
     def post(self):
         """
         Create Transaction.
@@ -128,6 +131,7 @@ class TransactionList(Resource):
 class TransactionDetail(Resource):
     """Transaction class based views with parameter."""
 
+    @jwt_required()
     def get(self, pk):
         """
         Get a Transaction by its pk.
@@ -165,6 +169,7 @@ class TransactionDetail(Resource):
         acc_schema = transaction_schema.TransactionSchema()
         return make_response(acc_schema.jsonify(transaction), 200)
 
+    @jwt_required()
     def put(self, pk):
         """
         Update Transaction.
@@ -246,6 +251,7 @@ class TransactionDetail(Resource):
 
         return make_response(acc_schema.jsonify(updated_transaction), 200)
 
+    @jwt_required()
     def delete(self, pk):
         """
         Delete a Transaction.
